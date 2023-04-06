@@ -16,6 +16,10 @@ function Page({pokemons, pageNumber, typeSelectedArray}) {
     })
     newList = newList.slice(startIndex, endIndex);
 
+    const handleCard = () => {
+        console.log('card clicked');
+    }
+
 
     // //https://github.com/fanzeyi/pokemon.json/tree/master/images/
     if (newList.length === 0) {
@@ -26,10 +30,10 @@ function Page({pokemons, pageNumber, typeSelectedArray}) {
                 {
                     newList.map(pokemon => {
                         return (
-                        <div key={pokemon.id} className='poke_card'>
-                            <img id='poke_img' alt='pokemon_img' src={`https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/images/${pokemon.id < 10 ? "00" : ""}${pokemon.id > 9 && pokemon.id < 100 ? "0" : ""}${pokemon.id}.png`}></img>
-                            <figcaption><h4>{pokemon.name.english}</h4></figcaption>
-                        </div>
+                            <div key={pokemon.id} className='poke_card' onClick={handleCard}>
+                                <img id='poke_img' alt='pokemon_img' src={`https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/images/${pokemon.id < 10 ? "00" : ""}${pokemon.id > 9 && pokemon.id < 100 ? "0" : ""}${pokemon.id}.png`}></img>
+                                <figcaption><h4>{pokemon.name.english}</h4></figcaption>
+                            </div>
                         )
                     })
                 }

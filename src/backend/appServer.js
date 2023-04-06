@@ -4,9 +4,9 @@ const { connectDB } = require("./connectDB.js")
 const { populatePokemons } = require("./populatePokemons.js")
 const { getTypes } = require("./getTypes.js")
 const { handleErr } = require("./errorHandler.js")
+const { createLog } = require("./createLog.js")
 const morgan = require("morgan")
 const cors = require("cors")
-
 
 const {
   PokemonBadRequest,
@@ -49,10 +49,6 @@ app.use(express.json())
 const jwt = require("jsonwebtoken")
 // const { findOne } = require("./userModel.js")
 const userModel = require("./userModel.js")
-
-
-
-
 
 // app.use(morgan("tiny"))
 app.use(morgan(":method"))

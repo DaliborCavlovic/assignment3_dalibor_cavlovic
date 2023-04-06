@@ -1,0 +1,8 @@
+
+const createLog = (req, res, next) => {
+    res.on("finish", function() {
+      console.log(req.method, decodeURI(req.url), res.statusCode, res.statusMessage);
+    });
+};
+
+module.exports = { createLog };

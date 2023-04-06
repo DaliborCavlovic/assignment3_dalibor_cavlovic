@@ -40,7 +40,7 @@ function Search({ setTypeSelectedArray, typeSelectedArray, setPageNumber}) {
             className='filter-checkbox'
             onChange={handleClickF}
           />
-          <label htmlFor={type}>{type}</label>
+          <label id="typeLabel" htmlFor={type}>{type}</label>
 
 
         </div>)

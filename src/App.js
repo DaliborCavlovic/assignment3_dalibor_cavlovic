@@ -24,13 +24,11 @@ function App() {
 
   return (
     <div>
-      <h1>Page Number: {pageNumber}</h1>
+      <h3>Page Number: {pageNumber}</h3>
       <Page pokemons = { pokemons } pageNumber={pageNumber} typeSelectedArray={ typeSelectedArray }/>
       <br />
       <Pagination pokemons={ pokemons } setPageNumber = {setPageNumber} pageNumber={pageNumber} typeSelectedArray={typeSelectedArray} setTypeSelectedArray={setTypeSelectedArray}/>
-      <br />
-      <br />
-      <br />
+  
       <Search setTypeSelectedArray={setTypeSelectedArray} typeSelectedArray={typeSelectedArray} setPageNumber={ setPageNumber }/>
     </div>
   );
