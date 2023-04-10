@@ -14,13 +14,13 @@ const {
   PokemonAuthError
 } = require("./errors.js")
 
-const app = express()
+const app2 = express()
 
 const start = asyncWrapper(async () => {
   await connectDB({ "drop": false });
 
 
-  app.listen(process.env.authServerPORT, async (err) => {
+  app2.listen(process.env.authServerPORT, async (err) => {
     if (err)
       throw new PokemonDbError(err)
     else
@@ -32,13 +32,13 @@ const start = asyncWrapper(async () => {
 })
 start()
 
-app.use(express.json())
-app.use(cors({
+app2.use(express.json())
+app2.use(cors({
   exposedHeaders: ['auth-token-access', 'auth-token-refresh']
 }))
 
 const bcrypt = require("bcrypt")
-app.post('/register', asyncWrapper(async (req, res) => {
+app2.post('/register', asyncWrapper(async (req, res) => {
   const { username, password, email } = req.body
   const salt = await bcrypt.genSalt(10)
   const hashedPassword = await bcrypt.hash(password, salt)
@@ -50,7 +50,7 @@ app.post('/register', asyncWrapper(async (req, res) => {
 
 const jwt = require("jsonwebtoken")
 let refreshTokens = [] // replace with a db
-app.post('/requestNewAccessToken', asyncWrapper(async (req, res) => {
+app2.post('/requestNewAccessToken', asyncWrapper(async (req, res) => {
   // console.log(req.headers);
   const refreshToken = req.header('auth-token-refresh')
   if (!refreshToken) {
@@ -71,7 +71,7 @@ app.post('/requestNewAccessToken', asyncWrapper(async (req, res) => {
   }
 }))
 
-app.post('/login', asyncWrapper(async (req, res) => {
+app2.post('/login', asyncWrapper(async (req, res) => {
   const { username, password } = req.body
   const user = await userModel.findOne({ username })
   if (!user)
@@ -94,7 +94,7 @@ app.post('/login', asyncWrapper(async (req, res) => {
 }))
 
 
-app.get('/logout', asyncWrapper(async (req, res) => {
+app2.get('/logout', asyncWrapper(async (req, res) => {
 
   const user = await userModel.findOne({ token: req.query.appid })
   if (!user) {
@@ -103,4 +103,6 @@ app.get('/logout', asyncWrapper(async (req, res) => {
   await userModel.updateOne({ token: user.token }, { token_invalid: true })
   res.send("Logged out")
 }))
+
+module.exports = {app2}
 

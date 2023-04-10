@@ -16,6 +16,7 @@ function App() {
     
     async function getPokemons() {
       const res = await axios.get('https://raw.githubusercontent.com//fanzeyi/pokemon.json/master/pokedex.json');
+      
       setPokemons(res.data);
     }
 

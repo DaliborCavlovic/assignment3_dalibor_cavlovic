@@ -191,3 +191,5 @@ app.get('/report', (req, res) => {
 
 
 app.use(handleErr)
+
+module.exports = { app }
